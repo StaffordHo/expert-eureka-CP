@@ -1,0 +1,159 @@
+Working:
+
+
+rem 1) start fresh
+rmdir /S /Q C:\Users\stafford.ho\Downloads\opencv\build_noavx\onnxruntime_src\build
+
+rem 2) configure a new out-of-source build (all /MD to match OpenCV + your app)
+set ORT_SRC=C:\Users\stafford.ho\Downloads\opencv\build_noavx\onnxruntime_src
+set ORT_BUILD=%ORT_SRC%\build_md
+
+cmake -S %ORT_SRC%\cmake -B %ORT_BUILD% -G "Visual Studio 17 2022" -A x64 ^
+  -DCMAKE_BUILD_TYPE=Release ^
+  -DCMAKE_MSVC_RUNTIME_LIBRARY=MultiThreadedDLL ^
+  -Donnxruntime_BUILD_SHARED_LIB=ON ^
+  -Donnxruntime_RUN_ONNX_TESTS=OFF ^
+  -DENABLE_AVX=OFF -DENABLE_AVX2=OFF -DENABLE_AVX512F=OFF ^
+  -DProtobuf_USE_STATIC_LIBS=OFF ^
+  -Dprotobuf_MSVC_STATIC_RUNTIME=OFF
+
+cmake --build %ORT_BUILD% --config Release --parallel
+
+
+
+:: paths (adjust if yours differ)
+set ORT_SRC=C:\Users\stafford.ho\Downloads\opencv\build_noavx\onnxruntime_src
+set ORT_BUILD=%ORT_SRC%\build_md
+
+:: sanity checks
+dir "%ORT_BUILD%\Release\onnxruntime.*"
+dir "%ORT_BUILD%\include\onnxruntime\core\session\onnxruntime_cxx_api.h"
+
+:: tell your sample where ORT is
+set ONNX_INC=%ORT_BUILD%\include
+set ONNX_LIB=%ORT_BUILD%\Release
+set PATH=%PATH%;%ONNX_LIB%
+
+:: (re)set OpenCV if needed
+rem set OPENCV_INC=C:\Users\stafford.ho\Downloads\opencv\build_noavx\install\include
+rem set OPENCV_LIB=C:\Users\stafford.ho\Downloads\opencv\build_noavx\install\x64\vc17\lib
+rem set PATH=%PATH%;C:\Users\stafford.ho\Downloads\opencv\build_noavx\install\x64\vc17\bin
+
+
+
+set ONNX_INC=C:\Users\stafford.ho\Downloads\opencv\build_noavx\onnxruntime_src\include
+set ONNX_INC_SESSION=%ONNX_INC%\onnxruntime\core\session
+set ONNX_LIB=C:\Users\stafford.ho\Downloads\opencv\build_noavx\onnxruntime_src\build_md\Release
+
+rem sanity checks
+dir "%ONNX_INC_SESSION%\onnxruntime_cxx_api.h"
+dir "%ONNX_LIB%\onnxruntime.lib"
+
+
+
+set OPENCV_INC=C:\Users\stafford.ho\Downloads\opencv\build_noavx\install\include
+dir "%OPENCV_INC%\opencv2\opencv.hpp"
+
+
+
+set OPENCV_LIB=C:\Users\stafford.ho\Downloads\opencv\build_noavx\install\x64\vc17\lib
+dir "%OPENCV_LIB%\opencv_world4120.lib"
+
+
+
+set ONNX_INC=C:\Users\stafford.ho\Downloads\opencv\build_noavx\onnxruntime_src\include
+set ONNX_INC_SESSION=%ONNX_INC%\onnxruntime\core\session
+set ONNX_LIB=C:\Users\stafford.ho\Downloads\opencv\build_noavx\onnxruntime_src\build_md\Release
+
+
+
+cl /std:c++17 /EHsc /MD ^
+  /I"%ONNX_INC%" ^
+  /I"%ONNX_INC_SESSION%" ^
+  /I"%OPENCV_INC%" ^
+  main.cpp ONNXInference.cpp ^
+  /link ^
+    /LIBPATH:"%ONNX_LIB%" onnxruntime.lib ^
+    /LIBPATH:"%OPENCV_LIB%" opencv_world4120.lib ^
+  /OUT:generic_infer.exe
+
+set OPENCV_BIN=C:\Users\stafford.ho\Downloads\opencv\build_noavx\install\x64\vc17\bin
+dir "%ONNX_LIB%\onnxruntime.dll"
+dir "%OPENCV_BIN%\opencv_world4120.dll"
+
+rem add them for this session (quickest)
+set PATH=%ONNX_LIB%;%OPENCV_BIN%;%PATH%
+
+
+
+set ORT_SRC=C:\Users\stafford.ho\Downloads\opencv\build_noavx\onnxruntime_src
+set ONNX_INC=%ORT_SRC%\build_md\include
+set ONNX_INC_SESSION=%ONNX_INC%\onnxruntime\core\session
+set ONNX_LIB=%ORT_SRC%\build_md\Release
+
+
+
+copy "%ONNX_LIB%\onnxruntime.dll" .\
+set PATH=%ONNX_LIB%;%PATH%
+
+
+del *.obj generic_infer.exe
+
+cl /std:c++17 /EHsc /MD ^
+  /I"%ONNX_INC%" ^
+  /I"%ONNX_INC_SESSION%" ^
+  /I"%OPENCV_INC%" ^
+  main.cpp ONNXInference.cpp ^
+  /link ^
+    /LIBPATH:"%ONNX_LIB%" onnxruntime.lib ^
+    /LIBPATH:"%OPENCV_LIB%" opencv_world4120.lib ^
+  /OUT:generic_infer.exe
+
+
+
+findstr /C:"#define ORT_API_VERSION" "%ONNX_INC%\onnxruntime_c_api.h"
+
+
+
+set ORT_ROOT=C:\ort_clean\install
+set ONNX_INC=%ORT_ROOT%\include\onnxruntime
+set ONNX_LIB=%ORT_ROOT%\lib
+set OPENCV_INC=C:\ort_clean\include
+set OPENCV_LIB=C:\ort_clean\x64\vc17\lib
+
+
+findstr /C:"#define ORT_API_VERSION" "%ONNX_INC_SESSION%\onnxruntime_c_api.h"
+
+
+
+
+del *.obj generic_infer.exe
+
+cl /std:c++17 /EHsc /MD /utf-8 ^
+  /I"%ONNX_INC%" ^
+  /I"%ONNX_INC_SESSION%" ^
+  /I"%OPENCV_INC%" ^
+  main.cpp ONNXInference.cpp ^
+  /link ^
+    /LIBPATH:"%ONNX_LIB%" onnxruntime.lib ^
+    /LIBPATH:"%OPENCV_LIB%" opencv_world4120.lib ^
+  /OUT:generic_infer.exe
+
+
+
+For Chinese text: 
+chcp 65001
+
+
+
+
+
+.\generic_infer.exe C:\ONNX\ONNXINFERENCE\YOLOX\yolox_s.onnx C:\ONNX\ONNXINFERENCE\generic\street.jpg
+
+.\generic_infer.exe C:\ONNX\ONNXINFERENCE\generic\det.onnx C:\ONNX\ONNXINFERENCE\generic\test1.jpg
+
+.\generic_infer.exe C:\ONNX\ONNXINFERENCE\generic\det.onnx C:\ONNX\ONNXINFERENCE\generic\rec.onnx C:\ONNX\ONNXINFERENCE\generic\test1.jpg
+
+
+
+

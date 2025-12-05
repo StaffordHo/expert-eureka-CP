@@ -1,0 +1,140 @@
+qpd Drop_A2 Drop_A1
+qpd Drop_A1 Drop_ABuffer
+qpd Drop_ABuffer Drop_B2
+qpd Drop_B2 Drop_B1
+qpd Drop_B1 Drop_BBuffer
+qpd Drop_BBuffer Drop_A2
+
+qpd Drop_A2 Drop_A1
+qpd Drop_A1 Drop_ABuffer
+qpd Drop_ABuffer Drop_B2
+qpd Drop_B2 Drop_B1
+qpd Drop_B1 Drop_BBuffer1
+qpd Drop_BBuffer1 Drop_A2
+
+qpd Drop_A2 Drop_A1
+qpd Drop_A1 Drop_ABuffer
+qpd Drop_ABuffer Drop_B2
+qpd Drop_B2 Drop_B1
+qpd Drop_B1 Drop_BBuffer2
+qpd Drop_BBuffer2 Drop_A2
+
+
+
+qpd Drop_A2 Drop_A1
+qpd Drop_A1 Drop_ABuffer1
+qpd Drop_ABuffer1 Drop_B2
+qpd Drop_B2 Drop_B1
+qpd Drop_B1 Drop_BBuffer
+qpd Drop_BBuffer Drop_A2
+
+qpd Drop_A2 Drop_A1
+qpd Drop_A1 Drop_ABuffer1
+qpd Drop_ABuffer1 Drop_B2
+qpd Drop_B2 Drop_B1
+qpd Drop_B1 Drop_BBuffer1
+qpd Drop_BBuffer1 Drop_A2
+
+qpd Drop_A2 Drop_A1
+qpd Drop_A1 Drop_ABuffer1
+qpd Drop_ABuffer1 Drop_B2
+qpd Drop_B2 Drop_B1
+qpd Drop_B1 Drop_BBuffer2
+qpd Drop_BBuffer2 Drop_A2
+
+
+
+qpd Drop_A2 Drop_A1
+qpd Drop_A1 Drop_ABuffer2
+qpd Drop_ABuffer2 Drop_B2
+qpd Drop_B2 Drop_B1
+qpd Drop_B1 Drop_BBuffer
+qpd Drop_BBuffer Drop_A2
+
+qpd Drop_A2 Drop_A1
+qpd Drop_A1 Drop_ABuffer2
+qpd Drop_ABuffer2 Drop_B2
+qpd Drop_B2 Drop_B1
+qpd Drop_B1 Drop_BBuffer1
+qpd Drop_BBuffer1 Drop_A2
+
+qpd Drop_A2 Drop_A1
+qpd Drop_A1 Drop_ABuffer2
+qpd Drop_ABuffer2 Drop_B2
+qpd Drop_B2 Drop_B1
+qpd Drop_B1 Drop_BBuffer2
+qpd Drop_BBuffer2 Drop_A2
+
+
+
+
+
+
+
+
+qpd Drop_B2 Drop_B1
+qpd Drop_B1 Drop_BBuffer
+qpd Drop_BBuffer Drop_A2
+qpd Drop_A2 Drop_A1
+qpd Drop_A1 Drop_ABuffer
+qpd Drop_ABuffer Drop_B2
+
+qpd Drop_B2 Drop_B1
+qpd Drop_B1 Drop_BBuffer
+qpd Drop_BBuffer Drop_A2
+qpd Drop_A2 Drop_A1
+qpd Drop_A1 Drop_ABuffer1
+qpd Drop_ABuffer1 Drop_B2
+
+qpd Drop_B2 Drop_B1
+qpd Drop_B1 Drop_BBuffer
+qpd Drop_BBuffer Drop_A2
+qpd Drop_A2 Drop_A1
+qpd Drop_A1 Drop_ABuffer2
+qpd Drop_ABuffer2 Drop_B2
+
+
+
+qpd Drop_B2 Drop_B1
+qpd Drop_B1 Drop_BBuffer1
+qpd Drop_BBuffer1 Drop_A2
+qpd Drop_A2 Drop_A1
+qpd Drop_A1 Drop_ABuffer
+qpd Drop_ABuffer Drop_B2
+
+qpd Drop_B2 Drop_B1
+qpd Drop_B1 Drop_BBuffer1
+qpd Drop_BBuffer1 Drop_A2
+qpd Drop_A2 Drop_A1
+qpd Drop_A1 Drop_ABuffer1
+qpd Drop_ABuffer1 Drop_B2
+
+qpd Drop_B2 Drop_B1
+qpd Drop_B1 Drop_BBuffer1
+qpd Drop_BBuffer1 Drop_A2
+qpd Drop_A2 Drop_A1
+qpd Drop_A1 Drop_ABuffer2
+qpd Drop_ABuffer2 Drop_B2
+
+
+
+qpd Drop_B2 Drop_B1
+qpd Drop_B1 Drop_BBuffer2
+qpd Drop_BBuffer2 Drop_A2
+qpd Drop_A2 Drop_A1
+qpd Drop_A1 Drop_ABuffer
+qpd Drop_ABuffer Drop_B2
+
+qpd Drop_B2 Drop_B1
+qpd Drop_B1 Drop_BBuffer2
+qpd Drop_BBuffer2 Drop_A2
+qpd Drop_A2 Drop_A1
+qpd Drop_A1 Drop_ABuffer1
+qpd Drop_ABuffer1 Drop_B2
+
+qpd Drop_B2 Drop_B1
+qpd Drop_B1 Drop_BBuffer2
+qpd Drop_BBuffer2 Drop_A2
+qpd Drop_A2 Drop_A1
+qpd Drop_A1 Drop_ABuffer2
+qpd Drop_ABuffer2 Drop_B2

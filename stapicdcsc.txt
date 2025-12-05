@@ -1,0 +1,11 @@
+cd "%USERPROFILE%\OneDrive - OMRON\OmronAutoFocus"
+
+csc /platform:x64 ^
+    /reference:"GenApiDotNet40_v3_4.dll;StApiDotNet40_v1_2.dll" ^
+    /out:SetFocus.exe ^
+    SetFocus.cs
+
+
+
+
+"C:\Windows\Microsoft.NET\Framework64\v4.0.30319\csc.exe" /platform:x64 /lib:"%CD%" /reference:GenApiDotNet40_v3_4.dll /reference:StApiDotNet40_v1_2.dll /out:SetFocus.exe SetFocus.cs

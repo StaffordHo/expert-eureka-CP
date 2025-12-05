@@ -1,0 +1,222 @@
+C:\Users\stafford.ho\OneDrive - OMRON\ONNX\ONNXINFERENCE
+
+set ONNX_INC=C:\Users\stafford.ho\OneDrive - OMRON\ONNX\onnxruntime-win-x64-1.22.0\include
+set ONNX_LIB=C:\Users\stafford.ho\OneDrive - OMRON\ONNX\onnxruntime-win-x64-1.22.0\lib
+set OPENCV_INC=C:\Users\stafford.ho\Downloads\opencv\build\include
+set OPENCV_LIB=C:\Users\stafford.ho\Downloads\opencv\build\x64\vc16\lib
+
+
+
+
+cl /EHsc /MD ^
+   /I"%ONNX_INC%" ^
+   /I"%OPENCV_INC%" ^
+   main.cpp ONNXInference.cpp ^
+   /link ^
+   /LIBPATH:"%ONNX_LIB%" onnxruntime.lib ^
+   /LIBPATH:"%OPENCV_LIB%" opencv_world4120.lib ^
+   /OUT:onnx_infer.exe
+
+
+
+
+
+
+python onnx_inference.py ^
+  -m "C:\Users\stafford.ho\OneDrive - OMRON\ONNX\ONNXINFERENCE\YOLOX\yolox_s.onnx" ^
+  -i "C:\Users\stafford.ho\OneDrive - OMRON\Pictures\scara.jpg" ^
+  -o result_dir ^
+  --input_shape 640,640 ^
+  -s 0.3
+
+
+.\generic_infer.exe C:\Users\stafford.ho\OneDrive - OMRON\ONNX\ONNXINFERENCE\YOLOX\yolox_s.onnx C:\Users\stafford.ho\OneDrive - OMRON\Pictures\scara.jpg
+
+
+
+cl /std:c++17 /EHsc /MD ^
+  /I"C:\Users\stafford.ho\OneDrive - OMRON\ONNX\onnxruntime-win-x64-1.22.0\include" ^
+  /I"%OPENCV_INC%" ^
+  main.cpp ONNXInference.cpp ^
+  /link ^
+    /LIBPATH:"C:\Users\stafford.ho\OneDrive - OMRON\ONNX\onnxruntime-win-x64-1.22.0\lib" onnxruntime.lib ^
+    /LIBPATH:"%OPENCV_LIB%" opencv_world4120.lib ^
+  /OUT:generic_infer.exe
+
+
+
+.\generic_infer.exe C:\ONNX\ONNXINFERENCE\YOLOX\yolox_s.onnx C:\ONNX\ONNXINFERENCE\generic\scara.jpg
+
+
+cl /std:c++17 /EHsc /MD ^
+  /I"%ONNX_INC%" ^
+  /I"%OPENCV_INC%" ^
+  main.cpp ONNXInference.cpp ^
+  /link ^
+    /LIBPATH:"%ONNX_LIB%" onnxruntime.lib ^
+    /LIBPATH:"%OPENCV_LIB%" opencv_world4120.lib ^
+  /OUT:generic_infer.exe
+
+
+.\generic_infer.exe C:\ONNX\ONNXINFERENCE\YOLOX\yolox_s.onnx C:\ONNX\ONNXINFERENCE\generic\street.jpg
+
+
+
+set ONNX_INC=C:\ONNX\onnxruntime-win-x64-1.22.0\include
+set OPENCV_INC=C:\Users\stafford.ho\Downloads\opencv\build\include
+set ONNX_LIB=C:\ONNX\onnxruntime-win-x64-1.22.0\lib
+set OPENCV_LIB=C:\Users\stafford.ho\Downloads\opencv\build\x64\vc16\bin
+
+cl /std:c++17 /EHsc /MD ^
+  /I"%ONNX_INC%" ^
+  /I"%OPENCV_INC%" ^
+  main.cpp ONNXInference.cpp ^
+  /link ^
+    /LIBPATH:"%ONNX_LIB%" onnxruntime.lib ^
+    /LIBPATH:"%OPENCV_LIB%" opencv_world4120.lib ^
+  /OUT:generic_infer.exe
+
+
+.\generic_infer.exe C:\ONNX\ONNXINFERENCE\YOLOX\yolox_s.onnx C:\ONNX\ONNXINFERENCE\generic\students.jpg
+
+
+cd C:\ONNX\ONNXINFERENCE\YOLOX
+python tools\export_onnx.py ^
+  --output-name yolox_s_decoded.onnx ^
+  -n yolox-s ^
+  -c yolox_s.pth ^
+  -o 11 ^
+  --dynamic ^
+  --decode_in_inference
+
+
+cd C:\ONNX\ONNXINFERENCE\generic
+.\generic_infer.exe ^
+  C:\ONNX\ONNXINFERENCE\YOLOX\yolox_s_decoded.onnx ^
+  C:\ONNX\ONNXINFERENCE\generic\students.jpg
+
+
+
+
+C:\ONNX\ONNXINFERENCE\generic
+
+
+cd C:\ONNX\ONNXINFERENCE\generic
+cl /std:c++17 /EHsc /MD ^
+  /I"C:\ONNX\onnxruntime-win-x64-1.22.0\include" ^
+  /I"%OPENCV_INC%" ^
+  main.cpp ONNXInference.cpp ^
+  /link ^
+    /LIBPATH:"C:\ONNX\onnxruntime-win-x64-1.22.0\lib" onnxruntime.lib ^
+    /LIBPATH:"%OPENCV_LIB%" opencv_world4120.lib ^
+  /OUT:generic_infer.exe
+
+
+dir generic_infer.exe
+
+
+.\generic_infer.exe ^
+  "C:\ONNX\ONNXINFERENCE\YOLOX\yolox_s.onnx" ^
+  "C:\ONNX\ONNXINFERENCE\generic\scara.jpg"
+
+
+
+
+cl /std:c++17 /EHsc /MD ^
+  /I"C:\ONNX\onnxruntime-win-x64-1.22.0\include" ^
+  /I"C:\Users\stafford.ho\Downloads\opencv\build\include" ^
+  main.cpp ONNXInference.cpp ^
+  /link ^
+    /LIBPATH:"C:\ONNX\onnxruntime-win-x64-1.22.0\lib" onnxruntime.lib ^
+    /LIBPATH:"C:\Users\stafford.ho\Downloads\opencv\build\x64\vc16\lib" opencv_world4120.lib ^
+  /OUT:generic_infer.exe
+
+
+
+
+
+IN GENERIC FOLDER:
+
+cl /std:c++17 /EHsc /MD ^
+    /I"%ONNX_INC%" ^
+    /I"%OPENCV_INC%" ^
+    main.cpp ONNXInference.cpp ^
+    /link ^
+      /LIBPATH:"%ONNX_LIB%" onnxruntime.lib ^
+      /LIBPATH:"%OPENCV_LIB%" opencv_world4120.lib ^
+    /OUT:generic_infer.exe
+
+.\generic_infer.exe C:\ONNX\ONNXINFERENCE\YOLOX\yolox_s.onnx C:\ONNX\ONNXINFERENCE\generic\street.jpg
+
+
+
+cd C:\ONNX\ONNXINFERENCE\generic
+
+:: point at your ONNX Runtime headers
+set ONNX_INC=C:\ONNX\onnxruntime-win-x64-1.22.0\include
+
+:: point at your OpenCV headers
+set OPENCV_INC=C:\Users\stafford.ho\Downloads\opencv\build\include
+
+set ONNX_LIB=C:\ONNX\onnxruntime-win-x64-1.22.0\lib
+
+:: point at your OpenCV libs
+set OPENCV_LIB=C:\Users\stafford.ho\Downloads\opencv\build\x64\vc16\lib
+
+set PATH=%PATH%;C:\Users\stafford.ho\Downloads\opencv\build\x64\vc16\bin
+
+
+
+cl /std:c++17 /EHsc /MD ^
+  /I"%ONNX_INC%" ^
+  /I"%OPENCV_INC%" ^
+  main.cpp ONNXInference.cpp ^
+  /link ^
+    /LIBPATH:"%ONNX_LIB%" onnxruntime.lib ^
+    /LIBPATH:"%OPENCV_LIB%" opencv_world4120.lib ^
+  /OUT:generic_infer.exe
+
+.\generic_infer.exe C:\ONNX\ONNXINFERENCE\YOLOX\yolox_s.onnx C:\ONNX\ONNXINFERENCE\generic\street.jpg
+
+.\generic_infer.exe C:\ONNX\ONNXINFERENCE\generic\det.onnx C:\ONNX\ONNXINFERENCE\generic\test1.jpg
+
+.\generic_infer.exe C:\ONNX\ONNXINFERENCE\generic\det.onnx C:\ONNX\ONNXINFERENCE\generic\rec.onnx C:\ONNX\ONNXINFERENCE\generic\test1.jpg
+
+
+For Chinese text: 
+chcp 65001
+
+
+check for AVX Instructions:
+dumpbin /DISASM C:\Users\stafford.ho\Downloads\opencv\build\x64\vc16\bin\opencv_world4120.dll > disasm_opencv.txt
+dumpbin /DISASM C:\ONNX\onnxruntime-win-x64-1.22.0\lib\onnxruntime.dll   > disasm_ort.txt
+
+
+
+
+
+
+.\generic_infer.exe C:\ONNX\ONNXINFERENCE\PYTORCH\mnist.onnx C:\ONNX\ONNXINFERENCE\generic\4.jpg
+
+
+
+
+# simple one-liner to test the stream
+curl -H "Authorization: Bearer 70eb5d9cdb5b37129fdd2ab549e9aede-2b14bf24176b935a7a5210b3c7ee816d" \
+     "https://stream-fxpractice.oanda.com/v3/accounts/101-003-17857044-001/pricing/stream?instruments=EUR_USD"
+
+
+
+cd C:\Users\stafford.ho\Downloads\opencv
+mkdir build_noavx && cd build_noavx
+cmake ^
+  -G "Visual Studio 16 2019" ^
+  -A x64 ^
+  -DBUILD_SHARED_LIBS=ON ^
+  -DENABLE_SSE41=OFF ^
+  -DENABLE_SSE42=OFF ^
+  -DENABLE_AVX=OFF ^
+  -DENABLE_AVX2=OFF ^
+  -DENABLE_AVX512F=OFF ^
+  ..\opencv
+
